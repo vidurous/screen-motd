@@ -1,0 +1,7 @@
+#!/bin/bash
+FILE='/etc/motd'
+FILE2='/home/aathomas/bin/motd.sh'
+FILE3='/home/aathomas/bin/att.sh; /home/aathomas/bin/ssh.sh'
+cat $FILE
+exec -- $FILE2
+exec -- $FILE3

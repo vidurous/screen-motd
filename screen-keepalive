@@ -1,0 +1,37 @@
+#!/bin/bash
+
+process="[L]ISTEN"
+session_1="root@rhosp-1.openstack.gsslab.rdu2.redhat.com"
+session_2="root@rhosp-2.openstack.gsslab.rdu2.redhat.com"
+session_3="root@rhosp-3.openstack.gsslab.rdu2.redhat.com"
+session_4="root@s1-openstack.usersys.redhat.com"
+start_process="/bin/screen -S aathomas -dm"
+
+isup() {
+if ps ax |grep $process > /dev/null && ps auxw|grep ssh|grep -v grep |grep $session_1 > /dev/null && ps auxw|grep ssh|grep -v grep |grep $session_2 > /dev/null && ps auxw|grep ssh|grep -v grep |grep $session_3 > /dev/null && ps auxw|grep ssh|grep -v grep |grep $session_4 > /dev/null
+  
+    then 
+            exit 
+    else
+            killall screen
+            sleep 5    
+            $start_process &
+fi
+}
+
+
+if ps ax |grep $process > /dev/null && ps auxw|grep ssh|grep -v grep |grep $session_1 > /dev/null && ps auxw|grep ssh|grep -v grep |grep $session_2 > /dev/null && ps auxw|grep ssh|grep -v grep |grep $session_3 > /dev/null && ps auxw|grep ssh|grep -v grep |grep $session_4 > /dev/null
+
+    then
+            isup && sleep 10
+            isup && sleep 10
+            isup && sleep 10
+            isup && sleep 10
+            isup && sleep 10
+            isup && sleep 5
+            exit
+    else
+            killall screen
+            sleep 5
+            $start_process &
+fi
